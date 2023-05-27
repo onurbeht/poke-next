@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 
+import Card from '@/components/card'
+
 async function getData() {
-  const data = await fetch("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0").then((res) => res.json())
+  const data = await fetch("https://pokeapi.co/api/v2/pokemon?limit=251&offset=0").then((res) => res.json())
 
   const results = data.results
 
@@ -31,14 +33,14 @@ export default async function Home() {
 
   return (
     <div className={styles.container}>
+      <p className={styles.title}>
+        <span>Poke</span>
+        <span>Next</span>
+        <Image src={'/pokeball.png'} alt='pokeball' height={75} width={75} loading='lazy' />
+      </p>
       <div className={styles.pkCards}>
         {pokemons.map((pokemon) => (
-          <div className={styles.card}>
-            <h1>{pokemon.name}</h1>
-            <Image src={pokemon.image} alt={pokemon.name} height={100} width={100} loading='lazy' />
-
-            <p className={styles.button}>details</p>
-          </div>
+          <Card pokemon={pokemon} />
         ))}
       </div>
     </div>
