@@ -39,8 +39,8 @@ export default async function Home() {
         <Image src={'/pokeball.png'} alt='pokeball' height={75} width={75} loading='lazy' />
       </p>
       <div className={styles.pkCards}>
-        {pokemons.map((pokemon) => (
-          <Card pokemon={pokemon} />
+        {pokemons.map((pokemon, i) => (
+          <Card key={i} pokemon={pokemon} />
         ))}
       </div>
     </div>
